@@ -1,17 +1,21 @@
+'use client'
 import Nav from "@/components/nav/nav";
+import { User } from "@/models/User";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { blue, grey } from "@mui/material/colors";
+import { log } from "console";
 
 const Register = () => {
-    //let user = new User();
+    let user = new User;
+    let passwordConfirmation : string = '';
 
     const listInputs = [
-        { text: 'Nome Completo', type: "text" },
-        { text: 'Email', type: "text" },
-        { text: 'Telefone', type: "number" },
-        { text: 'Senha', type: "text" },
-        { text: 'Data de Nascimento', type: "date" },
-        { text: 'Confimarção de Senha', type: "text" },
+        { text: 'Nome Completo', type: "text", value: user.name },
+        { text: 'Email', type: "text", value: user.email },
+        { text: 'Telefone', type: "number", value: user.telephone },
+        { text: 'Senha', type: "text", value: user.password },
+        { text: 'Data de Nascimento', type: "date", value: user.bornDate },
+        { text: 'Confimarção de Senha', type: "text", value: passwordConfirmation },
     ]
 
     return (
@@ -42,7 +46,7 @@ const Register = () => {
                                             <>
                                                 <div className=" w-full h-full flex flex-col justify-center px-4">
                                                     <p className="text-lg text-[#3399BB] font-extrabold" key={input.text}>{input.text}</p>
-                                                    <input className=" border-4 outline-none px text-base w-full" type={input.type} />
+                                                    <input className=" border-4 outline-none px text-base w-full" type={input.type} value={input.value}/>
                                                 </div>
                                             </>
                                         );
@@ -58,7 +62,7 @@ const Register = () => {
                                             <>
                                                 <div className=" w-full h-full flex flex-col justify-center px-4">
                                                     <p className="text-lg text-[#3399BB] font-extrabold" key={input.text}>{input.text}</p>
-                                                    <input className=" border-4 outline-none px text-base w-full" type={input.type} />
+                                                    <input className=" border-4 outline-none px text-base w-full" type={input.type} value={input.value}/>
                                                 </div>
                                             </>
                                         );
@@ -70,7 +74,13 @@ const Register = () => {
                 </div>
                 <div className=" w-full h-12 flex justify-center items-center">
                     <div className=" h-full w-[15%] bg-[#D971A1] flex justify-center rounded-2xl items-center cursor-pointer">
-                        <p className="text-white text-lg underline font-bold">Cadastrar</p>
+                        <p 
+                        onClick={()=> {
+                            console.log(user);
+                        }}
+                        className="text-white text-lg underline font-bold">
+                        Cadastrar
+                        </p>
                     </div>
                 </div>
             </div>
