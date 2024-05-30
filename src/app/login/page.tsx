@@ -1,15 +1,23 @@
 'use client'
 import { useRouter } from "next/navigation";
+import Nav from "../../components/nav/nav"
 
 
 const Login =() => {
     const router = useRouter();
   return (
-    <div className=" w-24 h-24 bg-red-300">
-        <h1>Login</h1>
-        <button className=" w-10 h-10 bg-blue-300" onClick={() => {
-            router.push("/teste")
-        }}></button>
+    <div className=" w-full overflow-y-auto h-screen bg-[#eeeeee] flex flex-col items-center">
+      <Nav></Nav>
+      <div className=" w-[70%] h-full flex flex-col justify-center items-center">
+        <div className="w-full h-[8%] flex items-center justify-start">
+          <div className=" h-full w-16 bg-pink-300 rounded-full cursor-pointer">
+
+          </div>
+        </div>
+        <div className="w-[40%] h-[70%] rounded-xl border-2 bg-white">
+
+        </div>
+      </div>
     </div>
   );
 }
