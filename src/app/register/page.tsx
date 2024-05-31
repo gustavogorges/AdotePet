@@ -1,22 +1,61 @@
 'use client'
 import Nav from "@/components/nav/nav";
 import { User } from "@/models/User";
+import { Key } from "@mui/icons-material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { blue, grey } from "@mui/material/colors";
-import { log } from "console";
+import { useState } from "react";
+import { UserService } from "@/services/userService";
+
+type FormData = {
+    [key : string] : string
+}
 
 const Register = () => {
-    let user = new User;
-    let passwordConfirmation : string = '';
+    let user = new User('','','','','');
+
+    const [formData, setFormData] = useState({
+     userName : '',
+     userEmail : '',
+     userTelephone : '',
+     userPassword : '',
+     userBornDate : '',
+     passwordConfirmation : '',
+    })
 
     const listInputs = [
-        { text: 'Nome Completo', type: "text", value: user.name },
-        { text: 'Email', type: "text", value: user.email },
-        { text: 'Telefone', type: "number", value: user.telephone },
-        { text: 'Senha', type: "text", value: user.password },
-        { text: 'Data de Nascimento', type: "date", value: user.bornDate },
-        { text: 'Confimarção de Senha', type: "text", value: passwordConfirmation },
+        { text: 'Nome Completo', name: 'userName', type: 'text' },
+        { text: 'Email', name: 'userEmail', type: 'text' },
+        { text: 'Telefone', name: 'userTelephone', type: 'number' },
+        { text: 'Senha', name: 'userPassword', type: 'password' },
+        { text: 'Data de Nascimento', name: 'userBornDate', type: 'text' },
+        { text: 'Confirmação de Senha', name: 'passwordConfirmation', type: 'password' },
     ]
+
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+        const { name , value } = e.target;
+
+        setFormData({
+            ...formData,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = async() => {
+        const {userName, userEmail, userTelephone, userPassword, userBornDate} = formData;
+
+        let newUser = new User(
+            userName,
+            userEmail,
+            userTelephone,
+            userPassword,
+            userBornDate
+        )
+
+        newUser = await UserService.registerUser(newUser);
+        
+        console.log(newUser)
+    }
 
     return (
 
@@ -46,7 +85,13 @@ const Register = () => {
                                             <>
                                                 <div className=" w-full h-full flex flex-col justify-center px-4">
                                                     <p className="text-lg text-[#3399BB] font-extrabold" key={input.text}>{input.text}</p>
-                                                    <input className=" border-4 outline-none px text-base w-full" type={input.type} value={input.value}/>
+                                                    <input 
+                                                    className=" border-4 outline-none px text-base w-full" 
+                                                    type={input.type}
+                                                    name={input.name} 
+                                                    value={formData[input.name] || ''}
+                                                    onChange={handleChange}
+                                                    />
                                                 </div>
                                             </>
                                         );
@@ -62,7 +107,13 @@ const Register = () => {
                                             <>
                                                 <div className=" w-full h-full flex flex-col justify-center px-4">
                                                     <p className="text-lg text-[#3399BB] font-extrabold" key={input.text}>{input.text}</p>
-                                                    <input className=" border-4 outline-none px text-base w-full" type={input.type} value={input.value}/>
+                                                    <input 
+                                                    className=" border-4 outline-none px text-base w-full" 
+                                                    type={input.type} 
+                                                    name={input.name}
+                                                    value={formData[input.name] || ''}
+                                                    onChange={handleChange}
+                                                    />
                                                 </div>
                                             </>
                                         );
@@ -76,7 +127,7 @@ const Register = () => {
                     <div className=" h-full w-[15%] bg-[#D971A1] flex justify-center rounded-2xl items-center cursor-pointer">
                         <p 
                         onClick={()=> {
-                            console.log(user);
+                            handleSubmit()
                         }}
                         className="text-white text-lg underline font-bold">
                         Cadastrar
