@@ -14,5 +14,18 @@ export const UserService = {
         } catch(error) {
             console.log(error)
         }
+    },
+
+    findUserByEmail : async(email : string) => {
+        try {
+            const response = await axios.get(baseUrl+'/email/'+email, {
+                headers: {
+                'Content-Type': 'application/json'
+                }
+            });
+            return response.data;
+        } catch(error) {
+            console.log(error);
+        }
     }
 }

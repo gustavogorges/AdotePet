@@ -5,13 +5,15 @@ import { Key } from "@mui/icons-material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { blue, grey } from "@mui/material/colors";
 import { useState } from "react";
-import { UserService } from "@/services/userService";
+import { UserService } from "@/services/UserService";
+import { useRouter } from "next/navigation";
 
 type FormData = {
     [key : string] : string
 }
 
 const Register = () => {
+    const router = useRouter();
     let user = new User('','','','','');
 
     const [formData, setFormData] = useState({
@@ -63,7 +65,12 @@ const Register = () => {
             <Nav></Nav>
             <div className=" w-[70%] h-full flex flex-col items-center gap-8">
                 <div className="w-full h-[10%] flex items-center justify-start">
-                    <div className=" absolute h-16 w-16 bg-[#3399BB] flex justify-center items-center rounded-full cursor-pointer">
+                    <div 
+                    onClick = {() => {
+                        router.push('/');
+                    }}
+                    className=" absolute h-16 w-16 bg-[#3399BB] flex justify-center items-center rounded-full cursor-pointer"
+                    >
                         <ArrowBackIcon sx={{ color: grey[50] }} fontSize="large" />
                     </div>
                     <div className=" h-full w-[100%] flex flex-col justify-center items-center">
