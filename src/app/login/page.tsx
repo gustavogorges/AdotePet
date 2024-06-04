@@ -7,10 +7,12 @@ import { blue, grey } from "@mui/material/colors";
 import { useState } from "react";
 import { UserService } from "@/services/UserService";
 import { User } from "@/models/User";
+import { CookiesService } from "@/services/CookiesService";
 
 
 const Login = () => {
     const service = UserService;
+    const cookiesService = CookiesService;
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
     const router = useRouter();
@@ -34,6 +36,7 @@ const Login = () => {
             const loggedUser = await service.findUserByEmail(email);
             if(loggedUser.password == password) {
                 console.log("PASSWORD CORRECT")
+                cookiesService.createLoggedUserCookie(loggedUser);
                 router.push('/')
             } else {
                 console.log('PASSWORD INCORRECT')

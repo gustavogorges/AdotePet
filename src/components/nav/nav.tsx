@@ -1,8 +1,28 @@
 'use client'
+import useCookie from "@/hooks/useCookie";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { UserService } from "@/services/UserService";
+import { User } from "@/models/User";
+import PersonIcon from '@mui/icons-material/Person';
+import { grey } from "@mui/material/colors";
 
 const Nav = () => {
+    const service = UserService;
+    let loggedUserId = useCookie('loggedUserId');
+    const [loggedUser , setLoggedUser] = useState<User>();
+
+    useEffect(() => {
+        async function fetchData() {
+            if(loggedUserId !== undefined) {
+                setLoggedUser(await service.findUserById(+loggedUserId))
+            }
+        }
+        fetchData();
+    }, [loggedUserId, service])
+        
+
     const router = useRouter();
     const listItems = [
         { name : "Inicio", router : "/"},
@@ -30,10 +50,23 @@ const Nav = () => {
                         })
                     }
                 </div>
+                {
                 <div className=" col-start-4 col-span-1 h-full flex items-center justify-end gap-8">
-                    <p onClick={() => router.push('/login')} className="underline text-pink-400 text-lg font-bold cursor-pointer">Entrar</p>
-                    <p onClick={() => router.push('/register')} className=" text-white text-lg py-2 px-2 rounded-xl bg-[#D971A1] font-bold cursor-pointer">Cadastre-se</p>
+                    {!loggedUser ? (
+                        <>
+                        <p onClick={() => router.push('/login')} className="underline text-pink-400 text-lg font-bold cursor-pointer">Entrar</p>
+                        <p onClick={() => router.push('/register')} className=" text-white text-lg py-2 px-2 rounded-xl bg-[#D971A1] font-bold cursor-pointer">Cadastre-se</p>
+                        </>
+                    ) : (
+                        <>
+                        <p className="text-[#3399BB] font-bold text-lg underline">{loggedUser.name}</p>
+                        <div className="flex justify-center items-center h-12 w-12 bg-[#3399BB] opacity-50 rounded-full">
+                            <PersonIcon sx={{ color: grey[50] }} fontSize="large" />
+                        </div>
+                        </>
+                    )}
                 </div>
+                }
             </div>
         </div>
     );

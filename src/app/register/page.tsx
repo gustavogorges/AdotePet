@@ -93,7 +93,7 @@ const Register = () => {
                                                 <div className=" w-full h-full flex flex-col justify-center px-4">
                                                     <p className="text-lg text-[#3399BB] font-extrabold" key={input.text}>{input.text}</p>
                                                     <input 
-                                                    className=" border-4 outline-none px text-base w-full" 
+                                                    className=" border-b-2 outline-none px text-base w-full" 
                                                     type={input.type}
                                                     name={input.name} 
                                                     value={formData[input.name] || ''}
@@ -115,7 +115,7 @@ const Register = () => {
                                                 <div className=" w-full h-full flex flex-col justify-center px-4">
                                                     <p className="text-lg text-[#3399BB] font-extrabold" key={input.text}>{input.text}</p>
                                                     <input 
-                                                    className=" border-4 outline-none px text-base w-full" 
+                                                    className=" border-b-2 outline-none px text-base w-full" 
                                                     type={input.type} 
                                                     name={input.name}
                                                     value={formData[input.name] || ''}
