@@ -59,7 +59,12 @@ const Nav = () => {
                         </>
                     ) : (
                         <>
-                        <p className="text-[#3399BB] font-bold text-lg underline">{loggedUser.name}</p>
+                        <p 
+                        onClick={() => {
+                            router.push("/profile")
+                        }}
+                        className="text-[#3399BB] font-bold text-lg underline cursor-pointer"
+                        >{loggedUser.name}</p>
                         <div className="flex justify-center items-center h-12 w-12 bg-[#3399BB] opacity-50 rounded-full">
                             <PersonIcon sx={{ color: grey[50] }} fontSize="large" />
                         </div>
