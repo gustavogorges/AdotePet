@@ -9,6 +9,7 @@ import { User } from "@/models/User";
 import { UserService } from "@/services/UserService";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useRouter } from "next/navigation";
+import PetsIcon from '@mui/icons-material/Pets';
 
 const Profile = () => {
     const router = useRouter();
@@ -37,7 +38,7 @@ const Profile = () => {
 
         <div className=" w-full overflow-y-auto h-screen bg-[#eeeeee] flex flex-col items-center">
             <Nav></Nav>
-            <div className=" w-[70%] h-full flex flex-col items-center gap-8">
+            <div className=" w-[60%] h-full flex flex-col items-center gap-8">
                 <div className="w-full h-[10%] flex items-center justify-start">
                     <div
                         onClick = {() => {
@@ -57,12 +58,12 @@ const Profile = () => {
                     </div>
                 </div>
                 <div
-                    className="w-full h-[80%] grid grid-rows-3 grid-cols-4"
+                    className="w-full h-[80%] grid grid-rows-4 grid-cols-4"
                 >
-                    <div className=" col-span-2 row-span-3 flex justify-start w-full h-full">
+                    <div className=" col-span-2 row-span-4 flex justify-start w-full h-full">
                         <div className=" rounded-2xl border-4 bg-white flex flex-col items-center h-full w-full">
                             <div className="h-[30%] w-[80%] flex flex-col items-center py-4">
-                                <div className=" h-[70%] opacity-50 w-[20%] flex justify-center bg-[#3399BB] rounded-full items-center">
+                                <div className=" h-[60%] opacity-50 w-[20%] flex justify-center bg-[#3399BB] rounded-full items-center">
                                     <PersonIcon sx={{ color: grey[50] }} className=" w-14 h-14" />
                                 </div>
                                 <div className=" h-[30%] w-[60%] flex justify-center items-end">
@@ -92,14 +93,14 @@ const Profile = () => {
                     </div>
                     <div className=" col-span-2 w-[100%] row-span-2 flex justify-end">
                         <div className=" bg-white rounded-2xl border-4 w-[80%] h-[90%] py-4 flex flex-col gap-2 items-center">
-                            <div className=" h-[30%] w-[20%] rounded-full bg-[#3399BB] flex opacity-60 justify-center items-center">
-                                <CalendarMonthIcon sx={{ color: grey[50] }} className=" w-20 h-20" />
+                            <div className=" h-[30%] w-[15%] rounded-full bg-[#3399BB] flex opacity-60 justify-center items-center">
+                                <PetsIcon sx={{ color: grey[50] }} className=" w-16 h-20" />
                             </div>
                             <div className=" h-[20%] w-[80%] flex justify-center items-center">
-                                <p className=" font-bold text-[#3399BB] text-3xl">Seus Eventos</p>
+                                <p className=" font-bold text-[#3399BB] text-xl">Seus Pets</p>
                             </div>
-                            <div className=" h-[20%] w-[30%] text-center flex justify-center items-center">
-                                <p className=" text-[#D971A1] font-semibold opacity-70">Edite seus eventos já cadastrados ou adicione novos!</p>
+                            <div className=" h-[20%] w-[50%] text-center flex justify-center items-center">
+                                <p className=" text-[#D971A1] font-semibold opacity-70">Adicione novos pets ou edite o perfil dos seus já cadastrados</p>
                             </div>
                             <div className="h-[30%] w-full flex justify-center items-center">
                                 <div className=" h-[50%] w-[30%] bg-[#D971A1] rounded-xl cursor-pointer flex justify-center items-center">
@@ -111,16 +112,33 @@ const Profile = () => {
                     <div className=" col-span-2 row-span-1 flex justify-end">
                         <div className=" border-4 rounded-2xl bg-white w-[80%] h-full py-2">
                             <div className=" h-[30%] w-full flex justify-center items-center">
-                                <p className=" font-bold text-[#3399BB] text-3xl">Seus Pets</p>
+                                <p className=" font-bold text-[#3399BB] text-xl">Seu Formulário</p>
                             </div>
                             <div className=" h-[30%] w-full flex justify-center items-center">
                                 <div className=" text-center h-full w-[50%]">
-                                    <p className="text-[#D971A1] font-semibold">Adicione novos pets ou edite o perfil dos seus já cadastrados :)</p>
+                                    <p className="text-[#D971A1] font-semibold">Modifique aqui seu formulário.</p>
                                 </div>
                             </div>
-                            <div className=" h-[30%] w-full flex justify-center items-center">
+                            <div className=" h-[30%] w-full flex justify-center items-center mt-2">
                                 <div className="h-[80%] w-[30%] flex justify-center items-center rounded-xl cursor-pointer bg-[#D971A1]">
                                     <p className="font-bold text-white">Entrar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className=" col-span-2 row-span-1 flex items-end justify-end">
+                        <div className=" border-4 rounded-2xl bg-white w-[80%] h-[80%] py-2">
+                            <div className=" h-[30%] w-full flex justify-center items-center">
+                                <p className=" font-bold text-[#3399BB] text-xl">Mural dos Felpudos</p>
+                            </div>
+                            <div className=" h-[30%] w-full flex justify-center items-center">
+                                <div className=" text-center h-full w-[80%]">
+                                    <p className="text-[#D971A1] font-semibold">Envie por aqui fotos do seu felpudo.</p>
+                                </div>
+                            </div>
+                            <div className=" h-[30%] w-full flex justify-center items-center mt-2">
+                                <div className="h-[80%] w-[30%] flex justify-center items-center rounded-xl cursor-pointer bg-[#D971A1]">
+                                    <p className="font-bold text-white">Adicionar</p>
                                 </div>
                             </div>
                         </div>
