@@ -55,7 +55,7 @@ const Nav = () => {
                     {!loggedUser ? (
                         <>
                         <p onClick={() => router.push('/login')} className="underline text-pink-400 text-lg font-bold cursor-pointer">Entrar</p>
-                        <p onClick={() => router.push('/register')} className=" text-white text-lg py-2 px-2 rounded-xl bg-[#D971A1] font-bold cursor-pointer">Cadastre-se</p>
+                        <p onClick={() => router.push('/registerType')} className=" text-white text-lg py-2 px-2 rounded-xl bg-[#D971A1] font-bold cursor-pointer">Cadastre-se</p>
                         </>
                     ) : (
                         <>

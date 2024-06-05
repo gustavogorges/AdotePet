@@ -4,9 +4,10 @@ import { User } from "@/models/User";
 import { Key } from "@mui/icons-material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { blue, grey } from "@mui/material/colors";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { UserService } from "@/services/UserService";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+
 
 type FormData = {
     [key : string] : string
@@ -24,6 +25,13 @@ const Register = () => {
      userBornDate : '',
      passwordConfirmation : '',
     })
+
+    const searchParams = useSearchParams();
+    const userType = searchParams.get('type');
+
+    useEffect(() => {
+        console.log('User type:', userType);
+    }, [userType]);
 
     const listInputs = [
         { text: 'Nome Completo', name: 'userName', type: 'text' },
@@ -51,7 +59,8 @@ const Register = () => {
             userEmail,
             userTelephone,
             userPassword,
-            userBornDate
+            userBornDate,
+            userType || ''
         )
 
         newUser = await UserService.registerUser(newUser);

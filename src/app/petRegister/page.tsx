@@ -7,11 +7,13 @@ import PetsIcon from '@mui/icons-material/Pets';
 import { Pet } from '@/models/Pet';
 import { useRouter } from 'next/navigation';
 import PetService from '@/services/PetService';
+import useCookie from '@/hooks/useCookie';
 
 const PetRegister = () => {
   const [pet, setPet] = useState<Pet>(new Pet());
   const petService = PetService;
   const router = useRouter();
+  const loggedUserId = useCookie('loggedUserId');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type, checked } = e.target;
@@ -23,7 +25,9 @@ const PetRegister = () => {
 
   const handleSubmit = async () => {
     console.log(pet);
-    pet.userId = 1
+    if(loggedUserId ) {
+      pet.userId = +loggedUserId;
+    }
     petService.registerPet(pet);
     // Send the pet object to the backend here
     // Example: await PetService.createPet(pet);
@@ -37,7 +41,7 @@ const PetRegister = () => {
         <div className="w-full h-[10%] flex items-center justify-start">
           <div
             onClick={() => {
-              router.push('/');
+              router.push('/myPets');
             }}
             className="absolute h-16 w-16 bg-[#3399BB] flex justify-center items-center rounded-full cursor-pointer"
           >
